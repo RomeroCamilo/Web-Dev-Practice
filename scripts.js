@@ -1,12 +1,25 @@
 //array of elements
-let vitArray = ["Vitamin C", "Vitamin A", "Vitamin D"]
+//let vitArray = ["Vitamin C", "Vitamin A", "Vitamin D"]
+
+//making an object of vitamins.
+let vitObject = [
+    {
+        vitamin: 'Vitamin C', fecha: "2021-10-04"
+    },
+    {
+        vitamin: 'Vitamin B', fecha: "2021-9-21"
+    }
+]
 
 
 //function that will add a vitamin to the list.
 function addVitamin(){
-  //user validation.
+  //Input validation 
   if(document.getElementById('addVitamin').value === ""){
-    alert("No Input")
+    alert("No Vitamin added")
+  }
+  else if(document.getElementById("fecha").value === ""){
+    alert("No date added")
   }
   else{
     //getting user input from text box.
@@ -14,7 +27,9 @@ function addVitamin(){
 
     //getting date
     const fecha = document.getElementById("fecha").value
-    vitArray.push(vitamin)
+
+    //we will now push the object. objects are surrounded by curly braces.
+    vitObject.push({vitamin: vitamin, fecha: fecha})
   }
 }
 
@@ -32,18 +47,18 @@ function render(){
     document.getElementById("container").innerText = " "
 
     //going into the vitamin array and printing out each vitamin into a div.
-    vitArray.forEach(function (vitamin){
+    vitObject.forEach(function (vitaminFact){
 
-    //creating a div.
-    const element = document.createElement('div')
+        //creating a div that will be filled with value from current iteration Vitamin Fact object.
+        const element = document.createElement('div')
 
-    //adding value to the div.
-    element.innerText = vitamin
+        //adding value to the div.
+        element.innerText = vitaminFact.vitamin
 
-    //get the div we want to append to
-    const containing = document.getElementById('container')
-    
-    //appending child to containing/'container'
-    containing.appendChild(element)
+        //get the div we want to append to
+        const containing = document.getElementById('container')
+        
+        //appending child to containing/'container'
+        containing.appendChild(element)
   })
 }
