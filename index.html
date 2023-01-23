@@ -19,7 +19,7 @@
       }
       else{
         //getting user input from text box.
-        let vitamin = document.getElementById('addVitamin').value
+        const vitamin = document.getElementById('addVitamin').value
         vitArray.push(vitamin)
       }
     }
@@ -39,13 +39,13 @@
         vitArray.forEach(function (vitamin){
 
         //creating a div.
-        let element = document.createElement('div')
+        const element = document.createElement('div')
 
         //adding value to the div.
         element.innerText = vitamin
 
         //get the div we want to append to
-        let containing = document.getElementById('container')
+        const containing = document.getElementById('container')
         
         //appending child to containing/'container'
         containing.appendChild(element)
