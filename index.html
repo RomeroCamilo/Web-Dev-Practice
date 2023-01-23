@@ -1,35 +1,66 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Practicing</title>
+    <title>Vitamin Verse</title>
     
     <link rel="stylesheet" href="styling.css">
    
     <!--INTERNAL JAVASCRIPT, YOU CAN MAKE FUNCTIONS THAT DO STUFF-->
    <script>
-      //function that will create divs with values based on text.
-      function addDiv(){
-        if(document.getElementById('items').value.length !== 0){
-          alert("Div Generated");
-          //item1 value will based on the text box value.
-          let item1 = document.getElementById('items').value;
-          //creating a div.
-          let element = document.createElement('div');
-          //setting the value of the div to item1.
-          element.innerText = item1;
-          //adding the div to the body.
-          document.body.appendChild(element);
-        }
-        //if the textbox is empty, it is not valid.
-        else{
-          alert('Text is empty');
-        }
+    //array of elements
+    let vitArray = ["Vitamin C", "Vitamin A", "Vitamin D"]
+
+    //function that will add a vitamin to the list.
+    function addVitamin(){
+
+      //user validation.
+      if(document.getElementById('addVitamin').value === ""){
+        alert("No Input")
       }
+      else{
+        //getting user input from text box.
+        let vitamin = document.getElementById('addVitamin').value
+        vitArray.push(vitamin)
+      }
+    }
+
+    //function that will reset the inner html of id 'container'
+    function reset(){
+      document.getElementById('container').innerText = " "
+    }
+
+    //function that will print out the vitamin list.
+    function render(){
+
+        //before printing out the list, to avoid duplicates, clear out the div with innerHtml/text.
+        document.getElementById("container").innerText = " "
+
+        //going into the vitamin array and printing out each vitamin into a div.
+        vitArray.forEach(function (vitamin){
+
+        //creating a div.
+        let element = document.createElement('div')
+
+        //adding value to the div.
+        element.innerText = vitamin
+
+        //get the div we want to append to
+        let containing = document.getElementById('container')
+        
+        //appending child to containing/'container'
+        containing.appendChild(element)
+      })
+    }
     </script>
   
 </head>
   <body>
-    <button class='buttons' onclick="addDiv()">Generate Div</button>;
-    <input class ='inputBox' id="items" type="text">
+    <button class='buttons' onclick="addVitamin()">Add Vitamin</button>
+    <input class ='inputBox' id="addVitamin" type="text">
+    <button class='buttons' onclick="render()">Print Vitamins</button>
+    <button class='buttons' onclick="reset()">Clear</button>
+    
+    <div id='container'></div>
+    
   </body>
 </html>
