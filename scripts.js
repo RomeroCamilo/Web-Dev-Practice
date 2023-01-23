@@ -53,7 +53,10 @@ function render(){
         const element = document.createElement('div')
 
         //adding value to the div.
-        element.innerText = vitaminFact.vitamin
+        element.innerText = vitaminFact.vitamin + " Date: " + vitaminFact.fecha
+        
+        //this how we add a class to a DOM element we created.
+        element.className='vitaminFacts'
 
         //get the div we want to append to
         const containing = document.getElementById('container')
