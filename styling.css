@@ -41,6 +41,16 @@
     border-style:none;
     cursor: pointer;
     margin-left: 12px;
+    transition: opacity .2s;
+    padding:2px;
+}
+
+.deleteButtons:hover{
+    opacity: 0.7;
+}
+
+.deleteButtons:active{
+    opacity:0.4;
 }
 
 /* styling the vitamin name and date */

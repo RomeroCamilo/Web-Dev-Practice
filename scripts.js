@@ -1,6 +1,8 @@
 //array of elements
 //let vitArray = ["Vitamin C", "Vitamin A", "Vitamin D"]
 
+// MODEL SECTION OF THE M.V.C: CONTAINS ALL THE CODE THAT SAVES AND MANAGES DATA, SUCH AS ADDING AND DELETING DATA. //
+
 //making an object of vitamins.
 let vitObject = [
     {
@@ -11,7 +13,13 @@ let vitObject = [
     }
 ]
 
+//will get the info the push from addVitamin.
+function createVitamin(vitamin, date, id){
+  vitObject.push({vitamin:vitamin, fecha: date, id: id})
+}
 
+
+//CONTROLLER PART OF THE MVC
 //function that will add a vitamin to the list.
 function addVitamin(){
   //Input validation 
@@ -33,40 +41,45 @@ function addVitamin(){
     const id = new Date().getTime().toString()
 
     //we will now push the object. objects are surrounded by curly braces.
-    vitObject.push({vitamin: vitamin, fecha: fecha, id: id})
+    //vitObject.push({vitamin: vitamin, fecha: fecha, id: id})
+
+    createVitamin(vitamin,fecha,id)
 
     alert("Data has been updated, click Print Vitamins again.")
   }
 }
 
+function deleteVitamin(idToDelete){
 
-//function that will reset the inner html of id 'container'
-function reset(){
-  document.getElementById('container').innerText = " "
+    //filter vs for each: In summary, "filter" is used for filtering elements from an array based on a certain condition, 
+    //while "foreach" is used for iterating over each element and performing an action on them.
+
+    //looping through our vitObject array with filter. we want to filter out
+    //updating our current array. thats why we set it equal to the filter function.
+    vitObject = vitObject.filter(function(vitaminRow){
+      //every element that is not equal to the id we want to delete will remain in the array.
+      return vitaminRow.id != idToDelete;
+  });
 }
 
+//CONTROLLER PART OF THE MVC.
 //event will have the information of a button in the event of a specific button is clicked.
 function deleteRow(event){
 
     //getting the id of the event button clicked/ targetting current event
     const idToDelete = event.target.id;
     
-    //filter vs for each: In summary, "filter" is used for filtering elements from an array based on a certain condition, 
-    //while "foreach" is used for iterating over each element and performing an action on them.
-
-    //looping through our vitObject array with filter. we want to filter out
-    //WE PUT AN EQUAL IN FILTER BECAUSE IN FILTER WE UPDATE THE ARRAY AND FILTER OUT WHAT WE DONT NEED.
-    vitObject = vitObject.filter(function(vitaminRow){
-        if(vitaminRow.id === idToDelete){
-            alert("Delete Successful")
-            return false;
-        }
-        else{
-            return true;
-        }
-    });
+    //calling function that will delete the row.
+    deleteVitamin(idToDelete)
 
     render();
+}
+
+
+//  VIEW SECTION OF THE MVC. RENDERS THE VISUAL ELEMENTS. //
+//function that will reset the inner html of id 'container'
+function reset(){
+  document.getElementById('container').innerText = " "
 }
 
 
