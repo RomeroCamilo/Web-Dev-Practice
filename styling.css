@@ -12,6 +12,17 @@
     transition: background-color 0.2s, color 0.2s;
 }
 
+/* styling the add, print and clear buttons */
+.buttons:hover{
+    background-color:red;
+    color:white;
+}
+
+.buttons:active{
+    opacity:0.5;
+}
+
+/* styling the input */
 .inputBox{
     background-color: white;
     border-color: white;
@@ -23,15 +34,16 @@
     font-size:12px;
 }
 
-.buttons:hover{
-    background-color:red;
-    color:white;
+/* styling the delete buttons*/
+.deleteButtons{
+    color:yellow;
+    background-color:black;
+    border-style:none;
+    cursor: pointer;
+    margin-left: 12px;
 }
 
-.buttons:active{
-    opacity:0.5;
-}
-
+/* styling the vitamin name and date */
 .vitaminFacts{
     color:white;
     font-size: 18px;
