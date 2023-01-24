@@ -29,7 +29,7 @@ function addVitamin(){
     const fecha = document.getElementById("fecha").value
 
     //an id for our current button. this function will return the current time in miliseconds.
-    //converting to string as we want our data to brings.
+    //converting to string.
     const id = new Date().getTime().toString()
 
     //we will now push the object. objects are surrounded by curly braces.
