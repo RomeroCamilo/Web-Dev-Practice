@@ -4,7 +4,7 @@
 //CHECKING OUR LOCAL STORAGE.
 let vitObject;
 
-//retrieve local storage with key. convert the storage value from string to its original data type.
+//retrieve local storage with key. convert the storage value from string to its original data type with 'JSON.parse()'
 const savedStorage = JSON.parse(localStorage.getItem('vitamin'));
 
 //if an array is found in this program, that means there is already previous info to use, so we will use the previous info.
@@ -28,6 +28,7 @@ else{
 
 //using our local storage to store the values of our object array after adding and deleting data.
 //local storage must have a string key and value, so make sure to stringify any value before placing into storage.
+//whenever we modify our array, we call this funciton
 function saveRows(){
   //function that will store our current array in local storage. the array is not a string, so i converted it into a string.
   localStorage.setItem('vitamin', JSON.stringify(vitObject));
