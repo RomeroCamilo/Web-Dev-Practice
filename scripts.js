@@ -1,23 +1,44 @@
 //array of elements
 //let vitArray = ["Vitamin C", "Vitamin A", "Vitamin D"]
 
-// MODEL SECTION OF THE M.V.C: CONTAINS ALL THE CODE THAT SAVES AND MANAGES DATA, SUCH AS ADDING AND DELETING DATA. //
+//CHECKING OUR LOCAL STORAGE.
+let vitObject;
 
-//making an object of vitamins.
-let vitObject = [
+//retrieve local storage with key. convert the storage value from string to its original data type.
+const savedStorage = JSON.parse(localStorage.getItem('vitamin'));
+
+//if an array is found in this program, that means there is already previous info to use, so we will use the previous info.
+if(Array.isArray(savedStorage)){
+   vitObject = savedStorage;
+}
+//if local storage is empty, create a new array.
+else{
+    //making an object of vitamins.
+     vitObject = [
     {
         vitamin: 'Vitamin C', fecha: "2021-10-04", id:'id1'
     },
     {
         vitamin: 'Vitamin B', fecha: "2021-9-21", id: 'id2'
     }
-]
+  ]
+}
+
+// MODEL SECTION OF THE M.V.C: CONTAINS ALL THE CODE THAT SAVES AND MANAGES DATA, SUCH AS ADDING AND DELETING DATA. //
+
+//using our local storage to store the values of our object array after adding and deleting data.
+//local storage must have a string key and value, so make sure to stringify any value before placing into storage.
+function saveRows(){
+  //function that will store our current array in local storage. the array is not a string, so i converted it into a string.
+  localStorage.setItem('vitamin', JSON.stringify(vitObject));
+}
 
 //will get the info the push from addVitamin.
 function createVitamin(vitamin, date, id){
   vitObject.push({vitamin:vitamin, fecha: date, id: id})
-}
 
+  saveRows()
+}
 
 //CONTROLLER PART OF THE MVC
 //function that will add a vitamin to the list.
@@ -50,7 +71,6 @@ function addVitamin(){
 }
 
 function deleteVitamin(idToDelete){
-
     //filter vs for each: In summary, "filter" is used for filtering elements from an array based on a certain condition, 
     //while "foreach" is used for iterating over each element and performing an action on them.
 
@@ -60,6 +80,8 @@ function deleteVitamin(idToDelete){
       //every element that is not equal to the id we want to delete will remain in the array.
       return vitaminRow.id != idToDelete;
   });
+  //saving updating list into local storage.
+  saveRows()
 }
 
 //CONTROLLER PART OF THE MVC.
@@ -75,13 +97,11 @@ function deleteRow(event){
     render();
 }
 
-
 //  VIEW SECTION OF THE MVC. RENDERS THE VISUAL ELEMENTS. //
 //function that will reset the inner html of id 'container'
 function reset(){
   document.getElementById('container').innerText = " "
 }
-
 
 //function that will print out the vitamin list.
 function render(){
